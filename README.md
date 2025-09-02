@@ -9,33 +9,6 @@ Desenvolver sistemas integrados que atendam às necessidades da indústria farma
 - ODS 3: Saúde e Bem-estar
 - ODS 9: Indústria, Inovação e Infraestrutura
 
-## 🗂️ Estrutura do Repositório
-📦 ProjetoExtensionista/ 
-├── Grupo01/ 
-│ ├── Documento_Requisitos/ 
-│ │ ├── Requisitos_Funcionais_e_Nao_Funcionais.pdf 
-│ │ ├── Priorizacao_de_Requisitos.pdf 
-│ │ └── Regras_de_Negocio.pdf 
-│ ├── Modelagem_UML/ 
-│ │ ├── Diagrama_Casos_de_Uso.png 
-│ │ ├── Diagrama_Classes.png 
-│ │ ├── Diagrama_Atividades.png 
-│ │ ├── Diagrama_Sequencia.png 
-│ │ └── Diagrama_Estado.png 
-│ ├── Arquitetura_Sistema/ ← entrega opcional 
-│ │ ├── Definicao_de_Camadas.pdf 
-│ │ ├── Tecnologias_e_Frameworks.pdf 
-│ │ └── Consideracoes_Seguranca_Escalabilidade.pdf 
-│ ├── Relatorio_Final/ 
-│ │ ├── Descricao_da_Solucao.pdf 
-│ │ ├── Justificativa_Arquitetural.pdf 
-│ │ └── Beneficios_para_Industria_Farmaceutica.pdf 
-│ └── Video_Apresentacao.mp4 
-├── Grupo02/ 
-│ └── ... 
-├── ODS_Selecionadas.pdf 
-└── README.md
-
 ## 📹 Apresentações
 Cada grupo deve incluir um vídeo de apresentação explicando o funcionamento do sistema, os diagramas UML e a relação com os ODS.
 
