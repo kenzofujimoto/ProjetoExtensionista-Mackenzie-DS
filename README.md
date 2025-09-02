@@ -6,8 +6,7 @@ Este repositório reúne os trabalhos desenvolvidos pelos grupos da disciplina *
 Desenvolver sistemas integrados que atendam às necessidades da indústria farmacêutica, utilizando práticas de engenharia de software, modelagem UML e prototipagem funcional.
 
 ## 🧠 ODS Selecionadas
-- ODS 3: Saúde e Bem-estar
-- ODS 9: Indústria, Inovação e Infraestrutura
+- 🔗 [Conheça os Objetivos de Desenvolvimento Sustentável](https://brasil.un.org/pt-br/sdgs)
 
 ## 📹 Apresentações
 Cada grupo deve incluir um vídeo de apresentação explicando o funcionamento do sistema, os diagramas UML e a relação com os ODS.
@@ -21,7 +20,6 @@ Cada grupo deve incluir um vídeo de apresentação explicando o funcionamento d
 
 ## 📌 Observações
 - Os arquivos devem ser nomeados de forma clara.
-- Diagramas podem ser em imagem ou PDF.
-- Prototipagem pode ser feita em Figma, Adobe XD ou outra ferramenta.
+- Diagramas podem ser em imagem ou PDF. Recomendamos o uso do PlantUML.
 
-- 🔗 [Conheça os Objetivos de Desenvolvimento Sustentável](https://brasil.un.org/pt-br/sdgs)
+
