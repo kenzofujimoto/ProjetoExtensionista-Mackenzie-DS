@@ -15,7 +15,7 @@ Cada grupo deve incluir um vídeo de apresentação explicando o funcionamento d
 
 1. Faça um fork do repositório ou solicite acesso ao responsável.
 2. Crie uma pasta com o nome do seu grupo (ex: `Grupo03`)
-3. Adicione os arquivos conforme a estrutura sugerida.
+3. Adicione os arquivos de forma organizada.
 4. Faça um pull request ou envie os arquivos diretamente.
 
 ## 📌 Observações
