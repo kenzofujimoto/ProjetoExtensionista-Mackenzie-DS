@@ -1,0 +1,44 @@
+@startuml
+title Diagrama de Sequência - Gestão de Estoque
+
+actor Estoquista
+actor "Gerente\nEstoque" as Gerente
+participant "Sistema\nEstoque" as Sistema
+participant "Sistema\nCompras" as Compras
+participant "Sistema\nProdução" as Producao
+
+Estoquista -> Sistema: Registrar recebimento mercadoria
+Sistema -> Sistema: Gerar número recebimento
+Sistema --> Estoquista: Solicitar inspeção visual
+
+Estoquista -> Sistema: Registrar condição mercadoria
+alt Mercadoria em perfeito estado
+  Estoquista -> Sistema: Confirmar recebimento
+  Sistema -> Sistema: Atualizar saldo estoque
+  Sistema -> Sistema: Gerar etiqueta RFID
+  Sistema --> Estoquista: Mercadoria recebida com sucesso
+else Mercadoria com avaria
+  Estoquista -> Sistema: Registrar não conformidade
+  Sistema -> Gerente: Notificar problema recebimento
+  Gerente -> Sistema: Decidir destino (devolução/quarentena)
+  Sistema --> Estoquista: Instruções de tratamento
+end
+
+group Inventário Periódico
+  Estoquista -> Sistema: Iniciar contagem inventário
+  Sistema --> Estoquista: Listar itens para contagem
+  Estoquista -> Sistema: Registrar quantidade física
+  Sistema -> Sistema: Comparar com saldo sistema
+  alt Divergência encontrada
+    Sistema -> Gerente: Solicitar aprovação ajuste
+    Gerente -> Sistema: Aprovar ajuste de estoque
+    Sistema -> Sistema: Atualizar saldo oficial
+  end
+  Sistema --> Estoquista: Inventário concluído
+end
+
+Sistema -> Producao: Alertar estoque baixo matéria-prima
+Sistema -> Compras: Sugerir pedido compra
+Compras --> Sistema: Confirmar compra solicitada
+
+@enduml
