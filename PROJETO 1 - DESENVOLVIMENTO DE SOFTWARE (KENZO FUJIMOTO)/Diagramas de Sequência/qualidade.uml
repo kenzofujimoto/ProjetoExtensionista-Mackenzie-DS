@@ -1,0 +1,45 @@
+@startuml
+title Diagrama de Sequência - Controle de Qualidade
+
+actor "Analista\nQualidade" as Analista
+participant "Sistema\nQualidade" as Sistema
+participant "Sistema\nProdução" as Producao
+participant "Sistema\nEstoque" as Estoque
+participant Gerente
+
+Producao -> Sistema: Notificar lote pronto para teste
+Sistema -> Analista: Alertar nova amostra disponível
+
+Analista -> Sistema: Consultar lotes pendentes
+Sistema --> Analista: Listar lotes aguardando teste
+
+Analista -> Sistema: Iniciar análise lote [X]
+Sistema -> Sistema: Registrar início análise
+
+group Testes Físico-Químicos
+  Analista -> Sistema: Registrar pH
+  Analista -> Sistema: Registrar viscosidade
+  Analista -> Sistema: Registrar pureza
+end
+
+group Testes Microbiológicos
+  Analista -> Sistema: Registrar contagem bacteriana
+  Analista -> Sistema: Registrar testes esterilidade
+end
+
+Analista -> Sistema: Registrar resultados completos
+Sistema -> Sistema: Validar contra especificações
+
+alt Todos parâmetros dentro do especificado
+  Sistema -> Sistema: Marcar como Aprovado
+  Sistema -> Estoque: Liberar para estoque
+  Estoque --> Sistema: Confirmar liberação
+  Sistema --> Analista: Lote aprovado com sucesso
+else Algum parâmetro fora do especificado
+  Sistema -> Sistema: Marcar como Reprovado
+  Sistema -> Gerente: Notificar não conformidade
+  Gerente -> Sistema: Decidir destino (reprocesso/descarte)
+  Sistema --> Analista: Lote reprovado - decisão registrada
+end
+
+@enduml

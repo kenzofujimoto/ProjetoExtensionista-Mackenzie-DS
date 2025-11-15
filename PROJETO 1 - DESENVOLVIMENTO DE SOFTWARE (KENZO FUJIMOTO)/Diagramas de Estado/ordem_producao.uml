@@ -1,0 +1,40 @@
+@startuml
+title Diagrama de Estados - Ordem de Produção
+
+state "Pendente" as pendente
+state "Aprovada" as aprovada
+state "Em Andamento" as andamento
+state "Interrompida" as interrompida
+state "Concluída" as concluida
+state "Cancelada" as cancelada
+
+[*] --> pendente
+
+pendente --> aprovada : Gerente aprova
+pendente --> cancelada : Gerente rejeita
+
+aprovada --> andamento : Iniciar produção
+andamento --> interrompida : Ocorrência crítica
+interrompida --> andamento : Problema resolvido
+interrompida --> cancelada : Não pode resolver
+
+andamento --> concluida : Produção finalizada
+
+concluida --> [*]
+cancelada --> [*]
+
+note right of pendente
+  **Aguardando**
+  Ordem criada aguardando
+  análise e aprovação
+  do gerente
+end note
+
+note left of interrompida
+  **Parada Emergencial**
+  Produção parada devido
+  a problema crítico que
+  requer intervenção
+end note
+
+@enduml

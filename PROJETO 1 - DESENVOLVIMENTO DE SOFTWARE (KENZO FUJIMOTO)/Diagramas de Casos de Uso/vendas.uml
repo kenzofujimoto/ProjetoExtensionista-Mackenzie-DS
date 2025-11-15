@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+
+actor Vendedor
+actor "Gerente de Vendas" as GerenteVend
+
+
+rectangle "Sistema de Gestão Farmacêutica" {
+  rectangle Vendas {
+    usecase "Cadastrar cotações" as UC18
+    usecase "Calcular orçamentos (PCP)" as UC19
+    usecase "Gerar propostas comerciais" as UC20
+    usecase "Alterar propostas" as UC21
+    usecase "Enviar propostas por email" as UC22
+    usecase "Gerar pedidos de venda" as UC23
+    usecase "Acompanhar status de pedidos" as UC24
+    usecase "Gerenciar vendedores" as UC25
+    usecase "Gerar relatórios de desempenho" as UC27
+  }
+}
+
+Vendedor --> UC18
+Vendedor --> UC19
+Vendedor --> UC20
+Vendedor --> UC21
+Vendedor --> UC22
+Vendedor --> UC24
+GerenteVend --> UC21
+GerenteVend --> UC22
+GerenteVend --> UC23
+GerenteVend --> UC25
+GerenteVend --> UC27
+
+UC18 .> UC19 : include
+UC19 .> UC20 : include
+UC20 .> UC22 : include
+
+@enduml

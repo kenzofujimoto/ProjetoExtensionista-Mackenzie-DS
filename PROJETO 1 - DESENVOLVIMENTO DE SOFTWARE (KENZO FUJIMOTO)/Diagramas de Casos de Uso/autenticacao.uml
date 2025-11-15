@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+
+actor Operador
+actor Supervisor
+actor "Gerente de Produção" as GerenteProd
+actor PCP
+actor "Gerente de Estoque" as GerenteEst
+actor Estoquista
+actor Vendedor
+actor "Gerente de Vendas" as GerenteVend
+actor Comprador
+
+rectangle "Sistema de Gestão Farmacêutica" {
+  rectangle Autenticação {
+    usecase "Efetuar login com 2FA" as UC28
+    usecase "Consultar logs/histórico do sistema" as UC29
+  }
+}
+
+Operador --> UC28
+Supervisor --> UC28
+GerenteProd --> UC28
+GerenteProd --> UC29
+PCP --> UC28
+GerenteEst --> UC28
+GerenteEst --> UC29
+Estoquista --> UC28
+Vendedor --> UC28
+GerenteVend --> UC28
+GerenteVend --> UC29
+Comprador --> UC28
+
+@enduml

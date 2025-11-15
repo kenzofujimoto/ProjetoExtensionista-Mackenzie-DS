@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+
+actor "Gerente de Estoque" as GerenteEst
+actor Estoquista
+actor PCP
+
+rectangle "Sistema de Gestão Farmacêutica" {
+  rectangle Estoque {
+    usecase "Consultar estoque MP/PF" as UC8
+    usecase "Reservar estoque para pedido" as UC9
+    usecase "Registrar entrada de produtos" as UC10
+    usecase "Visualizar mapa do armazém" as UC11
+    usecase "Consultar lotes bloqueados" as UC12
+    usecase "Registrar movimentações" as UC13
+    usecase "Emitir relatórios de validade" as UC14
+    usecase "Ajustar saldo manualmente" as UC15
+    usecase "Escanear etiquetas RFID/QR" as UC16
+  }
+}
+
+GerenteEst --> UC11
+GerenteEst --> UC12
+GerenteEst --> UC14
+Estoquista --> UC8
+Estoquista --> UC10
+Estoquista --> UC11
+Estoquista --> UC13
+Estoquista --> UC15
+Estoquista --> UC16
+PCP --> UC9
+
+UC10 .> UC16 : include
+
+@enduml

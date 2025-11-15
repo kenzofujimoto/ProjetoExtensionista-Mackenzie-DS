@@ -1,0 +1,56 @@
+@startuml
+title Diagrama de Estados - Ciclo de Vida do Lote de Produção
+
+state "Aguardando\nAutorização" as aguardando
+state "Em Produção" as producao
+state "Produção\nInterrompida" as interrompida
+state "Aguardando\nQualidade" as qualidade
+state "Reprocessamento" as reprocesso
+state "Aprovado" as aprovado
+state "Reprovado" as reprovado
+state "Em Estoque" as estoque
+state "Expedido" as expedido
+state "Cancelado" as cancelado
+state "Destruído" as destruido
+
+[*] --> aguardando
+
+aguardando --> producao : Gerente autoriza
+aguardando --> cancelado : Gerente rejeita
+
+producao --> interrompida : Ocorrência crítica
+interrompida --> producao : Problema resolvido
+interrompida --> cancelado : Não pode resolver
+
+producao --> qualidade : Produção finalizada
+
+qualidade --> aprovado : Testes aprovados
+qualidade --> reprovado : Testes reprovados
+qualidade --> reprocesso : Pode reprocessar
+
+reprocesso --> producao : Reiniciar produção
+
+aprovado --> estoque : Armazenado no estoque
+estoque --> expedido : Vendido/Expedido
+
+reprovado --> destruido : Destruído/Descarte
+
+expedido --> [*]
+destruido --> [*]
+cancelado --> [*]
+
+note right of aguardando
+  **Estado Inicial**
+  Lote criado aguardando
+  autorização do gerente
+  para iniciar produção
+end note
+
+note left of qualidade
+  **Controle de Qualidade**
+  Lote aguarda testes
+  físicos, químicos e
+  microbiológicos
+end note
+
+@enduml

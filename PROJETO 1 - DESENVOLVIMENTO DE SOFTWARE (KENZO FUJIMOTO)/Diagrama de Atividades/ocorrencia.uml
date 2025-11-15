@@ -1,0 +1,36 @@
+@startuml
+title Processo de Registro de Ocorrência
+
+start
+:Operador identifica problema;
+
+if (Problema crítico?) then (sim)
+  :Parar produção imediatamente;
+else (não)
+  :Continuar produção monitorando;
+endif
+
+:Preencher formulário ocorrência;
+:Registrar data/hora;
+:Identificar lote afetado;
+:Descrever impacto;
+
+if (Supervisor disponível?) then (sim)
+  :Supervisor avalia;
+else (não)
+  :Registrar como pendente;
+endif
+
+:Classificar tipo ocorrência;
+:Gerar número de registro;
+:Armazenar no sistema;
+
+if (Requere ação corretiva?) then (sim)
+  :Gerar ação corretiva;
+  :Designar responsável;
+else (não)
+  :Arquivar registro;
+endif
+
+stop
+@enduml
