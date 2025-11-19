@@ -1,0 +1,44 @@
+services:
+  mariadb:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: beepharma
+      MARIADB_USER: beepharma
+      MARIADB_PASSWORD: beepharma
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    healthcheck:
+      test: ["CMD", "mariadb", "-h", "localhost", "-u", "root", "--password=root", "-e", "SELECT 1;"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/beepharma
+      SPRING_DATASOURCE_USERNAME: beepharma
+      SPRING_DATASOURCE_PASSWORD: beepharma
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+
+volumes:
+  mariadb_data:
